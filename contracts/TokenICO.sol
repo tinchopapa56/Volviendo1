@@ -59,7 +59,7 @@ contract TokenICO {
             token.totalSupply(),
             tokenSalePrice,
             tokenAddress
-        )
+        );
     }
     function transferToOwner(uint256 _amount) {
         requrie(msg.value >= _amount, "Insufficient funds sent");
