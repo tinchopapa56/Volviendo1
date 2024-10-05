@@ -5,14 +5,18 @@ import toast from "react-hot-toast";
 import {
   CHECK_WALLET_CONNECTED,
   CONNECT_WALLET,
-  GET_BALANCE,
-  CHECK_ACCOUNT_BALANCE,
   TOKEN_ICO_CONTRACT,
   ERC20,
   ERC20_CONTRACT,
-  TOKEN_ADDRESS,
+  GET_BALANCE,
+  CHECK_ACCOUNT_BALANCE,
   addTokenToMetamask,
-} from "./constants";
+} from "./web3ConnectionFunctions";
+
+import {
+  TOKEN_ADDRESS,
+} from "./constants"
+
 import { formatEth } from "../Utils";
 
 export const TOKEN_ICO_context = React.createContext();
@@ -236,25 +240,25 @@ export const TOKEN_ICO_Provider = ({ children }) => {
 
   return (
     <TOKEN_ICO_context.Provider
-        value={{
-            TokenIco,
-            BuyToken,
-            withdrawToken,
-            transferToken,
-            transferEther,
-            donateToken,
-            updateTokenPrice,
-            updateToken,
+      value={{
+        TokenIco,
+        BuyToken,
+        withdrawToken,
+        transferToken,
+        transferEther,
+        donateToken,
+        updateTokenPrice,
+        updateToken,
 
-            balance,
-            setBalance,
-            account,
-            setAccount,
-            isLoading,
-            setIsLoading,
-        }}
+        balance,
+        setBalance,
+        account,
+        setAccount,
+        isLoading,
+        setIsLoading,
+      }}
     >
-        {children}
+      {children}
     </TOKEN_ICO_context.Provider>
   )
 };
