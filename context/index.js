@@ -38,7 +38,6 @@ export const TOKEN_ICO_Provider = ({ children }) => {
     try {
       const address = await CHECK_WALLET_CONNECTED();
       if (address) {
-
         setIsLoading(true);
         setAccount(address);
         const contract = await TOKEN_ICO_CONTRACT();
@@ -48,7 +47,6 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         const soldTokens = await contract.soldTokens();
 
         const ethBalance = await GET_BALANCE();
-        console.log("viendo5", ethBalance)
 
         const token = {
           tokenBal: formatEth(tokenDetails.balance.toString()),

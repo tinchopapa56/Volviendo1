@@ -1,7 +1,4 @@
-import { ethers } from "ethers";
-import Web3Modal from "web3Modal";
 
-import { formatEth } from "../Utils";
 
 //INTRERNA
 import tokenICO from "./TokenICO.json";
@@ -13,10 +10,10 @@ export const ERC20_ABI = erc20.abi;
 //address that published the contract on remidx/hardhat
 export const OWNER_ADRESS = "0x68786D98aEd82C3F407a34d7FE9e3B614f51b4e6";
 //when deploying - TokenICO
-export const CONTRACT_ADRESS = "0x9FD5f859aF1204522844915C2E5e9ae6065703aC";
+export const CONTRACT_ADDRESS = "0x9FD5f859aF1204522844915C2E5e9ae6065703aC";
 export const CONTRACT_ABI = tokenICO.abi;
 
-const networks = {
+export const networks = {
   sepolia: {
     chainId: `0x${Number(11155111).toString(16)}`,
     chainName: "Sepolia",
