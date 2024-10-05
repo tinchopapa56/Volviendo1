@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from '@mui/material/Button';
 
 const Header = ({
   account,
@@ -36,7 +37,7 @@ const Header = ({
     if (typeof window.ethereum !== undefined) {
       try {
         const accounts = await window.ethereum.request({
-          method: "eth_requestAccouns",
+          method: "eth_requestAccounts",
         })
         setAccount(accounts[0])
       } catch (err) {
@@ -64,7 +65,7 @@ const Header = ({
             <div className="header__left ul_li">
               <div className="header__logo">
                 <a href="/">
-                  <img src="assets/img/logo/logo.svg" alt="" srcset="" />
+                  <img src="assets/img/logo/logo.svg" alt="" srcSet="" />
                 </a>
               </div>
             </div>
@@ -112,21 +113,16 @@ const Header = ({
                 </div>
 
               </div>
-              {account ? (
-                <div className="header__account">
-                  <a onClick={() => navigator.clipboard.writeText(tokenDetails.address)}>
-                    {shortAddress(tokenDetails?.address) ?? ""}
-                    {tokenDetails?.maticBal?.slice(0, 6)}
-                    {currency}
-                  </a>
-                </div>
-              ) : (
-                <div className="header__account">
-                  <button style={{backgroundColor:"#966ef1", color:"white"}} onClick={() => connectMetamask()}>
-                    Connect Wallet
-                  </button>
-                </div>
-              )}
+              <div className="header__account">
+                <Button
+                  variant="contained"
+                  onClick={() => account ? navigator.clipboard.writeText(tokenDetails?.address) : connectMetamask()}
+                >
+                  {account
+                    ? `${shortAddress(tokenDetails?.address) ?? ""} ${tokenDetails?.maticBal?.slice(0, 6)} ${currency}`
+                    : "Connect"}
+                </Button>
+              </div>
             </div>
 
 
