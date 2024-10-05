@@ -1,25 +1,31 @@
+import { networks, CONTRACT_ADDRESS, CONTRACT_ABI, ERC20_ABI } from "./constants";
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 
+
+
+import { formatEth } from "../Utils";
 // CONNECTION F(x)
-export const changeNetwork = async ({ networkName }) => {
+export const changeNetwork = async (networkName) => {
     try {
       if (!window.ethereum) throw new Error("No crypto wallet found");
       await window.ethereum.request({
         method: "wallet_addEthereumChain",
         params: [{ ...networks[networkName] }],
       });
-    } catch (err) {
-      console.log(err.message);
+    } catch (error) {
+      console.log(error.message);
     }
   };
   
   export const handleNetworkSwitch = async (name = "holesky") => {
-    await changeNetwork({ name });
+    await changeNetwork(name);
   };
   export const CHECK_WALLET_CONNECTED = async () => {
     if (!window.ethereum) return console.log("Please Install Metamaks");
     await handleNetworkSwitch();
   
-    const account = await window.ethereum.request({ method: "eth_accouns" });
+    const account = await window.ethereum.request({ method: "eth_accounts" });
   
     if (account.length) return account[0];
     else console.log("please instal metamask");
@@ -47,14 +53,14 @@ export const changeNetwork = async ({ networkName }) => {
       const provider = new ethers.providers.Web3Provider(connection)
       const signer = provider.getSigner()
   
-      const contract = fetchContract(CONTRACT_ADRESS, CONTRACT_ABI, signer)
+      const contract = fetchContract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
   
       return contract
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   };
-  export const ERC20 = async () => {
+  export const ERC20 = async (address) => {
     try {
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
@@ -63,6 +69,8 @@ export const changeNetwork = async ({ networkName }) => {
       const network = await provider.getNetwork()
       const signer = await provider.getSigner()
   
+      const contract = fetchContract(address, ERC20_ABI, signer)
+
       const userAddress = signer.getAddress();
       const balance = await contract.balanceOf(userAddress);
   
@@ -78,11 +86,11 @@ export const changeNetwork = async ({ networkName }) => {
         balance: ethers.utils.formatEther(balance.toString()),
         chainId: network.chainId
       }
-      console.log("viendo token", token)
+      // console.log("ERC20 => viendo token", token)
   
       return token
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   };
   export const ERC20_CONTRACT = async () => {
@@ -92,11 +100,11 @@ export const changeNetwork = async ({ networkName }) => {
       const provider = new ethers.providers.Web3Provider(connection)
       const signer = provider.getSigner()
   
-      const contract = fetchContract(CONTRACT_ADRESS, ERC20_ABI, signer)
+      const contract = fetchContract(CONTRACT_ADDRESS, ERC20_ABI, signer)
   
       return contract
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   };
   export const GET_BALANCE = async () => {
@@ -109,8 +117,8 @@ export const changeNetwork = async ({ networkName }) => {
       const maticBal = await signer.getBalance() 
   
       return formatEth(maticBal)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   };
   export const CHECK_ACCOUNT_BALANCE = async (address) => {
@@ -122,8 +130,8 @@ export const changeNetwork = async ({ networkName }) => {
       const maticBal = await provider.getBalance(address) 
   
       return formatEth(maticBal)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   };
   export const addTokenToMetamask = async () => {
@@ -148,8 +156,8 @@ export const changeNetwork = async ({ networkName }) => {
         if(wasAdded) return "TOken correctl Added!"
         else "Couldn not add token!"
   
-      } catch(err){
-        console.log(err)
+      } catch(error){
+        console.log(error)
       }
     } else {
       return "metamask not installed"

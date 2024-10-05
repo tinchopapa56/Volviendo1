@@ -38,6 +38,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
     try {
       const address = await CHECK_WALLET_CONNECTED();
       if (address) {
+
         setIsLoading(true);
         setAccount(address);
         const contract = await TOKEN_ICO_CONTRACT();
@@ -47,6 +48,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         const soldTokens = await contract.soldTokens();
 
         const ethBalance = await GET_BALANCE();
+        console.log("viendo5", ethBalance)
 
         const token = {
           tokenBal: formatEth(tokenDetails.balance.toString()),
@@ -63,7 +65,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         setIsLoading(false);
         return token;
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     }
   };
@@ -91,7 +93,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
           toastSuccess("Tx done Successfully");
         }
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
       toastError("Tx Could not be completed");
     } finally {
@@ -118,7 +120,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
           window.location.reload();
         }
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
       toastError("Tx error");
     } finally {
@@ -136,7 +138,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         const tx = await contract.updateToken(address);
         await tx.wait();
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     } finally {
       setIsLoading(false);
@@ -156,7 +158,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         toastSuccess("Updated token price");
         window.location.reload();
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     } finally {
       setIsLoading(false);
@@ -180,7 +182,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         toastSuccess("Updated token price");
         window.location.reload();
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     } finally {
       setIsLoading(false);
@@ -206,7 +208,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         toastSuccess("Updated token price");
         window.location.reload();
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     } finally {
       setIsLoading(false);
@@ -231,7 +233,7 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         toastSuccess("Transfered token");
         window.location.reload();
       }
-    } catch (err) {
+    } catch (error) {
       console.log("error: ", error);
     } finally {
       setIsLoading(false);
