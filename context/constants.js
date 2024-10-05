@@ -9,12 +9,12 @@ import erc20 from "./ERC20.json";
 
 //when deploying - TheBlockchainCoders
 export const TOKEN_ADDRESS = "0xd28a793912CEA3FA70686e3B2d80Ce3F546d93B5";
-export const ERC20_ABI = "";
-
-export const OWNER_ADRESS = "";
-
-export const CONTRACT_ADRESS = "";
-export const CONTRACT_ABI = "";
+export const ERC20_ABI = erc20.abi;
+//address that published the contract on remidx/hardhat
+export const OWNER_ADRESS = "0x68786D98aEd82C3F407a34d7FE9e3B614f51b4e6";
+//when deploying - TokenICO
+export const CONTRACT_ADRESS = "0x9FD5f859aF1204522844915C2E5e9ae6065703aC";
+export const CONTRACT_ABI = tokenICO.abi;
 
 const networks = {
   sepolia: {
