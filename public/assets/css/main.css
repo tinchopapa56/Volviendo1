@@ -6145,7 +6145,7 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::after {
   -ms-transform: translateY(155px);
   transform: translateY(155px);
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column-reverse;
 }
@@ -7202,7 +7202,7 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::after {
 
 @media (max-width: 767px) {
   .faq__nav {
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 
@@ -7624,7 +7624,7 @@ body .mfp-wrap .mfp-container .mfp-content .mfp-close:hover::after {
 
 @media (max-width: 767px) {
   .brand__logo-wrap {
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 
@@ -10214,7 +10214,7 @@ blockquote span {
 
 @media (max-width: 991px) {
   .footer__document {
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 

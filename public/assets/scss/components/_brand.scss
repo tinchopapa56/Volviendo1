@@ -164,7 +164,7 @@
     &__logo-wrap {
         margin-left: -20px;
         @include respond(xs) {
-            justify-content: start;
+            justify-content: flex-start;
         }
     }
     &__logo-item {

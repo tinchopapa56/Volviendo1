@@ -39,7 +39,7 @@
        &:nth-child(even) {
             @include transform(translateY(155px));
             display: flex;
-            align-items: start;
+            align-items: flex-start;
             justify-content: center;
             flex-direction: column-reverse;
             .roadmap__head {

@@ -238,7 +238,7 @@
     &__nav {
         border: 0;
         @include respond(xs) {
-            justify-content: start;
+            justify-content: flex-start;
         }
         li {
             margin-bottom: 20px;
