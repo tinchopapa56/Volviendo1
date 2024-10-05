@@ -1,6 +1,6 @@
 import React from "react";
 
-const Owner = () => {
+const Owner = ({ close }) => {
   return <div>Owner</div>;
 };
 

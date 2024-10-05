@@ -256,6 +256,12 @@ export const TOKEN_ICO_Provider = ({ children }) => {
         setAccount,
         isLoading,
         setIsLoading,
+
+        CHECK_ACCOUNT_BALANCE,
+        addTokenToMetamask,
+        ERC20,
+        CONNECT_WALLET,
+        TOKEN_ADDRESS
       }}
     >
       {children}
