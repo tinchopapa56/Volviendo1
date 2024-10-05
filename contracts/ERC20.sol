@@ -8,3 +8,5 @@ contract TheBlockchainCoders is ERC20{
         _mint(msg.sender, 10000000000000000000);
     }
 }
+
+//using remix,  not hardhat

@@ -55,29 +55,30 @@ contract TokenICO {
         return (
             token.name(),
             token.symbol(),
-            token.balanceOf(),
+            token.balanceOf(address(this)),
             token.totalSupply(),
             tokenSalePrice,
             tokenAddress
         );
     }
-    function transferToOwner(uint256 _amount) {
-        requrie(msg.value >= _amount, "Insufficient funds sent");
+    function transferToOwner(uint256 _amount) public payable {
+    require(msg.value >= _amount, "Insufficient funds sent");
 
-        (bool success, ) = owner.call(value: _amount)("");
-        requrie(success, "Transfer to owner Failed")
-    }
+    (bool success, ) = owner.call{value: _amount}("");
+    require(success, "Transfer to owner Failed");
+}
+
     function transferEther(address payable _receiver, uint256 _amount) external payable {
-          requrie(msg.value >= _amount, "Insufficient funds sent");
+          require(msg.value >= _amount, "Insufficient funds sent");
 
-        (bool success, ) = _receiver.call(value: _amount)("");
-        requrie(success, "Transfer to owner Failed")
+        (bool success, ) = _receiver.call{value: _amount}("");
+        require(success, "Transfer to owner Failed");
     }
     function withdrawAllTokens() public onlyOwner {
         ERC20 token = ERC20(tokenAddress);
         uint256 balance = token.balanceOf(address(this));
 
-        require(balance > 0; "No tokens to withdraw");
+        require(balance > 0, "No tokens to withdraw");
         require(token.transfer(owner, balance), "Transfer failed");
     }
 }
